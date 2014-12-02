@@ -1,0 +1,23 @@
+{
+  "name": "gulp-arialinter",
+  "version": "0.0.1",
+  "description": "Gulp plugin for the accessibility tool AriaLinter",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "keywords": [
+    "gulp",
+    "gulpplugin",
+    "arialinter",
+    "aria",
+    "accessibility"
+  ],
+  "author": "Maxi Ferreira <charca@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "arialinter": "^0.3.1",
+    "gulp-util": "^3.0.1",
+    "through2": "^0.6.3"
+  }
+}
