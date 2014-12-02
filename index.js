@@ -1,19 +1,45 @@
+var _ = require('underscore');
 var through = require('through2');
-var gutil = require('gulp-util');
 var arialinter = require('arialinter');
+var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
 // consts
 const PLUGIN_NAME = 'gulp-arialinter';
 
 module.exports = function (options) {
-  var stream = through.obj(function(file, enc, callback) {
-    console.log(file);
-    console.log(file.isBuffer());
-    console.log('---');
+  var defaults = {
+    level: 'A',
+    templates: true,
+    rules: {}
+  };
 
-    this.push(file);
-    callback();
+  options = _.extend(defaults, options);
+
+  if (options.templates === true) {
+    options.template = true;
+    delete options.templates;
+  }
+
+  var stream = through.obj(function(file, enc, callback) {
+    var that = this;
+
+    if(file.isStream()) {
+      this.emit('error', new PluginError(PLUGIN_NAME, 'Streams not supported'));
+      return callback();
+    }
+
+    if(file.isBuffer()) {
+      arialinter.initialize(file.path, function() {
+
+        if(!arialinter.evaluate(options)) {
+          gutil.log(PLUGIN_NAME, arialinter.getReport('text', file.path));
+        }
+
+        that.push(file);
+        callback();
+      });
+    }
   });
 
   return stream;

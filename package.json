@@ -3,8 +3,13 @@
   "version": "0.0.1",
   "description": "Gulp plugin for the accessibility tool AriaLinter",
   "main": "index.js",
+  "homepage": "https://github.com/Charca/gulp-arialinter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Charca/gulp-arialinter.git"
+  },
   "scripts": {
-    "test": "gulp test"
+    "test": "mocha"
   },
   "keywords": [
     "gulp",
@@ -13,11 +18,19 @@
     "aria",
     "accessibility"
   ],
-  "author": "Maxi Ferreira <charca@gmail.com>",
+  "author": {
+    "name": "Maxi Ferreira",
+    "email": "charca@gmail.com"
+  },
   "license": "MIT",
   "dependencies": {
     "arialinter": "^0.3.1",
     "gulp-util": "^3.0.1",
-    "through2": "^0.6.3"
+    "through2": "^0.6.3",
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "mocha": "^2.0.1"
   }
 }
