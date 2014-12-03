@@ -30,6 +30,8 @@
     "underscore": "^1.7.0"
   },
   "devDependencies": {
+    "chai": "^1.10.0",
+    "event-stream": "^3.1.7",
     "gulp": "^3.8.10",
     "mocha": "^2.0.1"
   }

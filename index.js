@@ -23,6 +23,11 @@ module.exports = function (options) {
 
   var stream = through.obj(function(file, enc, callback) {
     var that = this;
+    
+    if(file.isNull()) {
+      that.push(file);
+      return callback();
+    }
 
     if(file.isStream()) {
       this.emit('error', new PluginError(PLUGIN_NAME, 'Streams not supported'));
